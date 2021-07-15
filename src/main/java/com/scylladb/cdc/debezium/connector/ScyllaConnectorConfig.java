@@ -106,6 +106,48 @@ public class ScyllaConnectorConfig extends CommonConnectorConfig {
                     "the connection to Scylla to prioritize sending requests to " +
                     "the nodes in the local datacenter. If not set, no particular datacenter will be prioritized.");
 
+    public static final Field TRUSTSTORE_LOCATION = Field.create("scylla.truststore.location")
+        .withDisplayName("truststore location")
+        .withType(ConfigDef.Type.STRING)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("truststore location");
+
+    public static final Field TRUSTSTORE_PASSWORD = Field.create("scylla.truststore.password")
+        .withDisplayName("truststore password")
+        .withType(ConfigDef.Type.PASSWORD)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("truststore password");
+
+    public static final Field TRUSTSTORE_TYPE = Field.create("scylla.truststore.type")
+        .withDisplayName("truststore type")
+        .withType(ConfigDef.Type.STRING)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("truststore type");
+
+    public static final Field KEYSTORE_LOCATION = Field.create("scylla.keystore.location")
+        .withDisplayName("keystore location")
+        .withType(ConfigDef.Type.STRING)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("keystore location");
+
+    public static final Field KEYSTORE_PASSWORD = Field.create("scylla.keystore.password")
+        .withDisplayName("keystore password")
+        .withType(ConfigDef.Type.PASSWORD)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("keystore password");
+
+    public static final Field KEYSTORE_TYPE = Field.create("scylla.keystore.type")
+        .withDisplayName("keystore type")
+        .withType(ConfigDef.Type.STRING)
+        .withWidth(ConfigDef.Width.SHORT)
+                    .withImportance(ConfigDef.Importance.HIGH)
+                    .withDescription("keystore type");
+
     /*
      * Scylla CDC Source Connector relies on heartbeats to move the offset,
      * because the offset determines if the generation ended, therefore HEARTBEAT_INTERVAL
@@ -122,7 +164,7 @@ public class ScyllaConnectorConfig extends CommonConnectorConfig {
     private static final ConfigDefinition CONFIG_DEFINITION =
             CommonConnectorConfig.CONFIG_DEFINITION.edit()
                     .name("Scylla")
-                    .type(CLUSTER_IP_ADDRESSES, USER, PASSWORD, LOGICAL_NAME, CONSISTENCY_LEVEL, LOCAL_DC_NAME)
+                    .type(CLUSTER_IP_ADDRESSES, USER, PASSWORD, LOGICAL_NAME, CONSISTENCY_LEVEL, LOCAL_DC_NAME, TRUSTSTORE_LOCATION, TRUSTSTORE_PASSWORD, TRUSTSTORE_TYPE, KEYSTORE_LOCATION, KEYSTORE_PASSWORD, KEYSTORE_TYPE)
                     .connector(QUERY_TIME_WINDOW_SIZE, CONFIDENCE_WINDOW_SIZE)
                     .events(TABLE_NAMES)
                     .excluding(Heartbeat.HEARTBEAT_INTERVAL).events(CUSTOM_HEARTBEAT_INTERVAL)
@@ -190,6 +232,30 @@ public class ScyllaConnectorConfig extends CommonConnectorConfig {
 
     public String getLocalDCName() {
         return config.getString(ScyllaConnectorConfig.LOCAL_DC_NAME);
+    }
+
+    public String getTruststoreLocation() {
+        return config.getString(ScyllaConnectorConfig.TRUSTSTORE_LOCATION);
+    }
+
+    public String getTruststorePassword() {
+        return config.getString(ScyllaConnectorConfig.TRUSTSTORE_PASSWORD);
+    }
+
+    public String getTruststoreType() {
+        return config.getString(ScyllaConnectorConfig.TRUSTSTORE_TYPE);
+    }
+
+    public String getKeystoreLocation() {
+        return config.getString(ScyllaConnectorConfig.KEYSTORE_LOCATION);
+    }
+
+    public String getKeystorePassword() {
+        return config.getString(ScyllaConnectorConfig.KEYSTORE_PASSWORD);
+    }
+
+    public String getKeystoreType() {
+        return config.getString(ScyllaConnectorConfig.KEYSTORE_TYPE);
     }
 
     @Override

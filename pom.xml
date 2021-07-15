@@ -114,11 +114,15 @@
             <groupId>com.scylladb</groupId>
             <artifactId>scylla-cdc-base</artifactId>
             <version>${scylla.cdc.java.version}</version>
+            <scope>system</scope>
+            <systemPath>${env.HOME}/.m2/repository/com/scylladb/scylla-cdc-base/1.2.1-SNAPSHOT/scylla-cdc-base-1.2.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.scylladb</groupId>
             <artifactId>scylla-cdc-driver3</artifactId>
             <version>${scylla.cdc.java.version}</version>
+            <scope>system</scope>
+            <systemPath>${env.HOME}/.m2/repository/com/scylladb/scylla-cdc-driver3/1.2.1-SNAPSHOT/scylla-cdc-driver3-1.2.1-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.debezium</groupId>
