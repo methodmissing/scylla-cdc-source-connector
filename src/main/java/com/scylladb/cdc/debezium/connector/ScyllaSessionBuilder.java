@@ -15,7 +15,8 @@ public class ScyllaSessionBuilder {
         builder.addContactPoints(configuration.getContactPoints());
         if (configuration.getUser() != null && configuration.getPassword() != null) {
             builder.withCredentials(configuration.getUser(), configuration.getPassword());
-        } else if (configuration.getTruststoreLocation() != null && configuration.getTruststorePassword() != null && configuration.getTruststoreType() != null &&
+        }
+        if (configuration.getTruststoreLocation() != null && configuration.getTruststorePassword() != null && configuration.getTruststoreType() != null &&
                    configuration.getKeystoreLocation() != null && configuration.getKeystorePassword() != null && configuration.getKeystoreType() != null) {
             builder.withClientCertAuth(configuration.getTruststoreLocation(), configuration.getTruststorePassword(), configuration.getTruststoreType(),
                                        configuration.getKeystoreLocation(), configuration.getKeystorePassword(), configuration.getKeystoreType());
